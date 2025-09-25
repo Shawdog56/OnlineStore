@@ -9,14 +9,15 @@ public class Client {
 
         try {
             Socket s = new Socket(HOST,PORT);
-            PrintWriter spw = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            ObjectOutputStream spw = new ObjectOutputStream(s.getOutputStream());
             BufferedReader sbr = new BufferedReader(new InputStreamReader(s.getInputStream()));
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            String message = br.readLine();
-            spw.println(message);
+            User pusuas = new User("Fluffy", 15);
+            spw.writeObject(pusuas);
             spw.flush();
 
+            String message;
             message = sbr.readLine();
             System.out.print("Message received from server=" +  message);
 
