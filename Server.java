@@ -14,13 +14,13 @@ public class Server {
 
             Socket s = ss.accept();
             PrintWriter spw = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            BufferedReader sbr = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            ObjectInputStream sbr = new ObjectInputStream(s.getInputStream());
 
 
             System.out.println("Client connected from " + s.getInetAddress());
 
-            String message = sbr.readLine();
-            System.out.println("Message Received: " + message);
+            User rcv = (User)sbr.readObject();
+            System.out.println("Message Received: " + rcv);
 
             spw.println("Message Received, thanks");
             spw.flush();
