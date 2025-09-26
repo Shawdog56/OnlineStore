@@ -1,4 +1,4 @@
-package OnlineShop;
+package OnlineStore;
 
 import java.io.Serializable;
 
